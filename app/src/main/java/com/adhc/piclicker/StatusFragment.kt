@@ -25,7 +25,7 @@ class StatusFragment : Fragment() {
     private var _binding: FragmentStatusBinding? = null
 
     companion object {
-        val statusData = StatusData("disconnected", 0.0)
+        val statusData = StatusData("disconnected", 0.0,"10.100.102.54")
         val executor = Executors.newFixedThreadPool(1)
         val TAG = StatusFragment.javaClass.name
     }
@@ -74,7 +74,7 @@ class StatusFragment : Fragment() {
             binding.status = statusData
 
             // call thread
-            val grpcThread = GrpcThread("10.100.102.13", angle, "50051")
+            val grpcThread = GrpcThread(statusData.host, angle, "50051")
             executor.execute(grpcThread)
         }
 
