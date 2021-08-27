@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="status"
+            type="com.adhc.piclicker.data.StatusData" />
+    </data>
+
+    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/status_relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".StatusFragment">
+
+
+        <LinearLayout
+            android:id="@+id/connectionLinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40pt"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/connectionStatusView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Connection status: " />
+
+            <TextView
+                android:id="@+id/connectionStatusParamView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{status.connection}" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</layout>

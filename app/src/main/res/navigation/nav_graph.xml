@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/OpeningFragment">
+
+    <action
+        android:id="@+id/action_to_StatusFragment"
+        app:destination="@id/StatusFragment" />
+
+
+
+<!--            android:id="@+id/action_FirstFragment_to_SecondFragment"-->
+
+
+    <fragment
+        android:id="@+id/OpeningFragment"
+        android:name="com.adhc.piclicker.OpeningFragment"
+        android:label="@string/opening_fragment_label"
+        tools:layout="@layout/fragment_opening">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/StatusFragment"
+        android:name="com.adhc.piclicker.StatusFragment"
+        android:label="@string/status_fragment_label"
+        tools:layout="@layout/fragment_status">
+
+    </fragment>
+
+
+</navigation>
