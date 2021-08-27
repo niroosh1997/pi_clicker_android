@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.adhc.piclicker.databinding.FragmentOpeningBinding
 import com.adhc.piclicker.grpc.GrpcThread
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 
 /**
  * A simple [Fragment] subclass.
@@ -18,6 +20,7 @@ class OpeningFragment : Fragment() {
 
     companion object {
         val TAG = OpeningFragment.javaClass.name
+        val executor = Executors.newFixedThreadPool(1)
     }
 
     private var _binding: FragmentOpeningBinding? = null
@@ -41,10 +44,10 @@ class OpeningFragment : Fragment() {
         binding.floatingTurnOnButton.setOnClickListener { _ ->
             StatusFragment.statusData.connection = "connected"
 
-            //todo: run async task
+            Log.d(TAG, "onViewCreated: clicked turn off light")
             Log.d(TAG, "onViewCreated: run thread")
-            val grpcThread = GrpcThread("10.100.102.13", "hey", "50051")
-            grpcThread.start()
+            val grpcThread = GrpcThread("10.100.102.13", 0.0, "50051")
+            executor.execute(grpcThread)
 
         }
 
