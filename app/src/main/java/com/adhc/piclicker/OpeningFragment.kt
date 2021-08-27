@@ -6,10 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.adhc.piclicker.databinding.FragmentOpeningBinding
 import com.adhc.piclicker.grpc.GrpcThread
+import com.adhc.piclicker.grpc.WifiActions
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
+import kotlin.concurrent.thread
 
 /**
  * A simple [Fragment] subclass.
@@ -46,9 +49,23 @@ class OpeningFragment : Fragment() {
 
             Log.d(TAG, "onViewCreated: clicked turn off light")
             Log.d(TAG, "onViewCreated: run thread")
-            val grpcThread = GrpcThread("10.100.102.13", 0.0, "50051")
-            executor.execute(grpcThread)
 
+            executor.execute(Runnable {
+                var messageToToast = "didn't found raspberrypi"
+                val wifiActions = WifiActions()
+                val raspHost = wifiActions.searchRaspberrypiService(requireContext())
+                if (raspHost != null) {
+                    Log.d(TAG, "found raspberry in ip: $raspHost")
+                    messageToToast = "found raspberry in ip: $raspHost"
+
+                    StatusFragment.statusData.host = raspHost
+                }
+
+
+                requireActivity().runOnUiThread(Runnable {
+                    Toast.makeText(context, messageToToast, Toast.LENGTH_LONG).show()
+                })
+            })
         }
 
 
