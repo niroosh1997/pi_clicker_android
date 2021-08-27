@@ -1,6 +1,7 @@
 package com.adhc.piclicker.data
 
 data class StatusData(
-    var connection: String
+    var connection: String,
+    var angle: Double
 
 )

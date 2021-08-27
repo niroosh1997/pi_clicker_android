@@ -15,24 +15,23 @@ syntax = "proto3";
 
 option java_multiple_files = true;
 option java_package = "com.adhc.piclicker.grpc";
-option java_outer_classname = "HelloWorldProto";
+option java_outer_classname = "ChangeAngleProto";
 option objc_class_prefix = "HLW";
 
 package com.adhc.piclicker.grpc.proto;
 
-// The greeting service definition.
-service Greeter {
-  // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
-  rpc SayHelloAgain(HelloRequest) returns (HelloReply){}
+// The change angled service definition.
+service ChangeAngleService {
+  // Send which angle to be
+  rpc changeAngle (ChangeAngleRequest) returns (ChangeAngleReply) {}
 }
 
 // The request message containing the user's name.
-message HelloRequest {
-  string name = 1;
+message ChangeAngleRequest {
+  double angle = 1;
 }
 
 // The response message containing the greetings
-message HelloReply {
+message ChangeAngleReply {
   string message = 1;
 }
