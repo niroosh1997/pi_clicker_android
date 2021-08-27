@@ -21,7 +21,6 @@ class GrpcThread constructor(
     }
 
     private var channel: ManagedChannel? = null
-    var mainActivity: Activity? = null
 
     override fun run() {
         Log.d(TAG, "run: thread started")
